@@ -1,0 +1,32 @@
+runtime: nodejs18
+
+handlers:
+  # Serve all static files in a more general way
+  - url: /static/(.+)
+    static_files: build/static/\1
+    upload: build/static/(.+)
+
+  # Serve HTML files
+  - url: /(.*\.html)$
+    static_files: build/\1
+    upload: build/(.*\.html)
+
+  # Serve CSS files
+  - url: /(.*\.css)$
+    static_files: build/\1
+    upload: build/(.*\.css)
+
+  # Serve JavaScript files
+  - url: /(.*\.js)$
+    static_files: build/\1
+    upload: build/(.*\.js)
+
+  # Serve image files (adjust the regex to include other image formats as needed)
+  - url: /(.*\.(png|jpg|jpeg|gif|ico|svg))$
+    static_files: build/\1
+    upload: build/(.*\.(png|jpg|jpeg|gif|ico|svg))
+
+  # Catch-all handler to serve index.html for all other URLs, supporting SPA routing
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
